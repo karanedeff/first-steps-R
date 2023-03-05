@@ -1,0 +1,59 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+
+****************************
+Okay, starting my own personal journey here.
+
+First I wanted to load the data from Times Series class. 
+
+The following code chunk succeeds in loading the initial data set from a "can view with link" google sheet.
+
+Since at this point I'm not proficient in slicing data, I opted for this solution as a first.
+
+```{r}
+library(googlesheets4)
+gs4_deauth()
+googlesheet <- "1wGjhr4LRb-TBkZbVqkQHv1nO4CLd1M1CtmMuJATIAGQ"
+x <- read_sheet(
+  googlesheet, 
+  range = "Sheet1!C2:F18", 
+  col_types = "icid")
+```
+By trying to learn more about how to use R for time series analysis, which is what I need somewhat soon, I ended up following a youtube from the same channel that our lesson was from (Simplilearn).
+They use this dataset for the analysis, so I'm loading that.
+
+
+```{r}
+library(tidyverse)
+germ_csv <- "https://raw.githubusercontent.com/jenfly/opsd/master/opsd_germany_daily.csv"
+y <- read.csv(germ_csv,
+              header = TRUE,
+              #row.names = "Date"
+              )
+```
+I will postpone researching conflicting package names when loading the tidyverse for now.
+
+Adding the row.names argument remove the name from the view. Interesting...
+
+
+```{r}
+y$Date
+```
+
